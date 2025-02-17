@@ -1,4 +1,4 @@
-package Go
+package golang
 
 import "testing"
 

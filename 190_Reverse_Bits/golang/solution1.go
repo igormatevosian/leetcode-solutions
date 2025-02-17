@@ -1,4 +1,4 @@
-package Go
+package golang
 
 func ReverseBits(num uint32) uint32 {
 	res := uint32(0)
