@@ -1,21 +1,30 @@
 package golang
 
-import "unicode"
+import (
+	"strings"
+	"unicode"
+)
 
 func isPalindrome(s string) bool {
+	s = strings.ToLower(s)
 	left, right := 0, len(s)-1
+
 	for left < right {
-		for !unicode.IsLetter(rune(s[left])) && !unicode.IsDigit(rune(s[left])) && left < right {
+		for left < right && !isAlphanumeric(rune(s[left])) {
 			left++
 		}
-		for !unicode.IsLetter(rune(s[right])) && !unicode.IsDigit(rune(s[right])) && right > left {
+		for left < right && !isAlphanumeric(rune(s[right])) {
 			right--
 		}
-		if unicode.ToLower(rune(s[left])) != unicode.ToLower(rune(s[right])) {
+		if s[left] != s[right] {
 			return false
 		}
 		left++
 		right--
 	}
 	return true
+}
+
+func isAlphanumeric(c rune) bool {
+	return unicode.IsLetter(c) || unicode.IsDigit(c)
 }
